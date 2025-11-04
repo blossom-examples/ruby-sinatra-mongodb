@@ -1,0 +1,21 @@
+<% if @posts.empty? %>
+  <div class="empty-state">
+    <h2>No posts yet</h2>
+    <p>Get started by creating your first post or run <code>ruby seed.rb</code> to add sample data.</p>
+  </div>
+<% else %>
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h2><a href="/posts/<%= post.id %>"><%= post.title %></a></h2>
+      <div class="post-meta">
+        By <%= post.author %> • <%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+      </div>
+      <div class="post-content">
+        <%= post.content.length > 200 ? post.content[0..200] + "..." : post.content %>
+      </div>
+      <div class="post-actions">
+        <a href="/posts/<%= post.id %>" class="btn btn-secondary">Read More</a>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,5 +1,5 @@
 require 'mongoid'
-require_relative 'models/book'
+require_relative 'models/post'
 
 # Load Mongoid configuration
 Mongoid.load!('config/mongoid.yml', :development)
@@ -7,67 +7,44 @@ Mongoid.load!('config/mongoid.yml', :development)
 puts "Seeding database..."
 
 # Clear existing data
-Book.delete_all
-puts "Cleared existing books"
+Post.delete_all
+puts "Cleared existing posts"
 
-# Sample books data
-books_data = [
+# Sample posts data
+posts_data = [
   {
-    title: "To Kill a Mockingbird",
-    author: "Harper Lee",
-    year: 1960,
-    genre: "Fiction"
+    title: "Getting Started with Ruby and MongoDB",
+    author: "Jane Developer",
+    content: "MongoDB is a great choice for Ruby applications. With the Mongoid ODM, you can easily map Ruby objects to MongoDB documents. This post will walk you through the basics of setting up a Ruby application with MongoDB.\n\nFirst, you'll need to install the mongoid gem. Then configure your database connection in mongoid.yml. After that, you can start defining your models and working with data!"
   },
   {
-    title: "1984",
-    author: "George Orwell",
-    year: 1949,
-    genre: "Dystopian Fiction"
+    title: "Why Sinatra is Perfect for Small Projects",
+    author: "John Smith",
+    content: "Sinatra is a lightweight web framework for Ruby that's perfect for small to medium-sized projects. Unlike Rails, Sinatra doesn't impose a lot of structure on your application. You have the freedom to organize your code however you want.\n\nThis makes it ideal for APIs, microservices, and simple web applications where you don't need all the bells and whistles of a full framework."
   },
   {
-    title: "The Great Gatsby",
-    author: "F. Scott Fitzgerald",
-    year: 1925,
-    genre: "Classic Fiction"
+    title: "Understanding MongoDB Documents",
+    author: "Sarah Chen",
+    content: "MongoDB stores data in flexible, JSON-like documents. This means fields can vary from document to document and data structure can be changed over time.\n\nDocuments are organized into collections, which are analogous to tables in relational databases. However, unlike tables, collections do not enforce a schema, giving you more flexibility in how you structure your data."
   },
   {
-    title: "Pride and Prejudice",
-    author: "Jane Austen",
-    year: 1813,
-    genre: "Romance"
+    title: "Building RESTful APIs with Sinatra",
+    author: "Mike Johnson",
+    content: "Sinatra makes it incredibly easy to build RESTful APIs. With just a few lines of code, you can define routes that respond to HTTP verbs like GET, POST, PUT, and DELETE.\n\nThe simplicity of Sinatra means there's less magic happening behind the scenes. What you see is what you get, making it easier to understand and debug your application."
   },
   {
-    title: "The Catcher in the Rye",
-    author: "J.D. Salinger",
-    year: 1951,
-    genre: "Coming-of-age Fiction"
-  },
-  {
-    title: "The Hobbit",
-    author: "J.R.R. Tolkien",
-    year: 1937,
-    genre: "Fantasy"
-  },
-  {
-    title: "Harry Potter and the Philosopher's Stone",
-    author: "J.K. Rowling",
-    year: 1997,
-    genre: "Fantasy"
-  },
-  {
-    title: "The Lord of the Rings",
-    author: "J.R.R. Tolkien",
-    year: 1954,
-    genre: "Fantasy"
+    title: "Tips for Working with Mongoid",
+    author: "Emily Rodriguez",
+    content: "Mongoid is an Object-Document-Mapper (ODM) for MongoDB written in Ruby. Here are some tips for working with it effectively:\n\n1. Always define validations on your models\n2. Use embedded documents for one-to-many relationships when appropriate\n3. Take advantage of Mongoid's query methods\n4. Remember to index your frequently queried fields\n5. Use the Rails console to test your queries"
   }
 ]
 
-# Create books
-books_data.each do |book_data|
-  book = Book.create!(book_data)
-  puts "Created: #{book.title} by #{book.author}"
+# Create posts
+posts_data.each do |post_data|
+  post = Post.create!(post_data)
+  puts "Created: #{post.title} by #{post.author}"
 end
 
-puts "\nSeeding complete! Created #{Book.count} books."
+puts "\nSeeding complete! Created #{Post.count} posts."
 puts "Start the app with: ruby app.rb"
 puts "Then visit: http://localhost:4567"
