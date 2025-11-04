@@ -3,7 +3,8 @@ require "mongoid"
 require_relative "models/post"
 
 # Load Mongoid configuration
-Mongoid.load!("config/mongoid.yml", :development)
+environment = ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
+Mongoid.load!("config/mongoid.yml", environment.to_sym)
 
 # Seed database with sample data if empty
 if Post.count.zero?

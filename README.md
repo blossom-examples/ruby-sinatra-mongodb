@@ -94,9 +94,16 @@ Connects to `demo` database on localhost:27017 with authentication:
 - Auth source: `admin`
 
 ### Production
+To use production configuration, set `RACK_ENV=production`.
+
 Uses a MongoDB connection URI from environment variables:
 - `MONGODB_URI` (preferred) or `DATABASE_URL`
 - Format: `mongodb://username:password@host:port/database?authSource=admin`
+
+**Example:**
+```bash
+RACK_ENV=production MONGODB_URI=mongodb://user:pass@host:27017/mydb bin/web
+```
 
 Common platforms that provide `MONGODB_URI`:
 - **Heroku**: MongoDB Atlas add-on
