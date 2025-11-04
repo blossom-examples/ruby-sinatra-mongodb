@@ -1,8 +1,8 @@
-require 'mongoid'
-require_relative 'models/post'
+require "mongoid"
+require_relative "models/post"
 
 # Load Mongoid configuration
-Mongoid.load!('config/mongoid.yml', :development)
+Mongoid.load!("config/mongoid.yml", :development)
 
 puts "Seeding database..."
 

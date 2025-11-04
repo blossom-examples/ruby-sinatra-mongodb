@@ -1,4 +1,4 @@
-require 'mongoid'
+require "mongoid"
 
 class Post
   include Mongoid::Document

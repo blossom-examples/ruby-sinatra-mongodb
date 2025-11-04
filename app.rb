@@ -1,28 +1,28 @@
-require 'sinatra'
-require 'mongoid'
-require_relative 'models/post'
+require "sinatra"
+require "mongoid"
+require_relative "models/post"
 
 # Load Mongoid configuration
-Mongoid.load!('config/mongoid.yml', :development)
+Mongoid.load!("config/mongoid.yml", :development)
 
 # Configure Sinatra
 set :port, 4567
-set :bind, '0.0.0.0'
+set :bind, "0.0.0.0"
 
 # List all posts
-get '/' do
+get "/" do
   @posts = Post.all.order_by(created_at: :desc)
   erb :index
 end
 
 # Show form to create a new post
-get '/posts/new' do
+get "/posts/new" do
   @post = Post.new
   erb :new
 end
 
 # Create a new post
-post '/posts' do
+post "/posts" do
   @post = Post.new(
     title: params[:title],
     content: params[:content],
@@ -30,14 +30,14 @@ post '/posts' do
   )
 
   if @post.save
-    redirect '/'
+    redirect "/"
   else
     erb :new
   end
 end
 
 # Show a single post
-get '/posts/:id' do
+get "/posts/:id" do
   @post = Post.find(params[:id])
   erb :show
 rescue Mongoid::Errors::DocumentNotFound
@@ -46,7 +46,7 @@ rescue Mongoid::Errors::DocumentNotFound
 end
 
 # Show form to edit a post
-get '/posts/:id/edit' do
+get "/posts/:id/edit" do
   @post = Post.find(params[:id])
   erb :edit
 rescue Mongoid::Errors::DocumentNotFound
@@ -55,7 +55,7 @@ rescue Mongoid::Errors::DocumentNotFound
 end
 
 # Update a post
-post '/posts/:id' do
+post "/posts/:id" do
   @post = Post.find(params[:id])
 
   @post.title = params[:title]
@@ -73,10 +73,10 @@ rescue Mongoid::Errors::DocumentNotFound
 end
 
 # Delete a post
-post '/posts/:id/delete' do
+post "/posts/:id/delete" do
   @post = Post.find(params[:id])
   @post.destroy
-  redirect '/'
+  redirect "/"
 rescue Mongoid::Errors::DocumentNotFound
   status 404
   "Post not found"
