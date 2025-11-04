@@ -1,7 +1,9 @@
 development:
   clients:
     default:
-      database: sinatra_books_dev
+      database: demo_dev
+      username: <%= ENV['MONGODB_USERNAME'] || 'admin' %>
+      password: <%= ENV['MONGODB_PASSWORD'] || 'root_password' %>
       hosts:
         - localhost:27017
       options:
@@ -17,7 +19,7 @@ production:
 test:
   clients:
     default:
-      database: sinatra_books_test
+      database: demo_test
       hosts:
         - localhost:27017
       options:

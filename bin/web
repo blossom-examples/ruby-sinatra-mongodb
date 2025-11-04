@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eux
+
+bundle exec puma -p 4567 -b tcp://0.0.0.0:4567
