@@ -12,14 +12,14 @@ A simple blog application demonstrating how to use MongoDB with Sinatra using Mo
   - Edit existing posts
   - Delete posts
 - Clean, responsive web interface
-- Seed script to populate database with sample data
+- **Automatic seeding** - Database is automatically populated with sample data on first run
 
 ## Prerequisites
 
 - Ruby
 - MongoDB (running on localhost:27017)
 
-## Installation
+## Quick Start
 
 1. Install dependencies:
 ```bash
@@ -28,19 +28,19 @@ bundle install
 
 2. Make sure MongoDB is running on your local machine
 
-3. Seed the database with sample posts:
-```bash
-ruby seed.rb
-```
-
-## Running the Application
-
-Start the Sinatra server:
+3. Start the application:
 ```bash
 ruby app.rb
 ```
 
-Then visit: http://localhost:4567
+The app will automatically seed the database with sample posts if it's empty. Then visit: http://localhost:4567
+
+## Manual Seeding (Optional)
+
+If you want to reset the database with fresh sample data:
+```bash
+ruby db/seeds.rb
+```
 
 ## Application Routes
 
@@ -67,7 +67,8 @@ Then visit: http://localhost:4567
 │   └── edit.erb           # Edit post form
 ├── config/
 │   └── mongoid.yml        # MongoDB configuration
-├── seed.rb                # Database seeding script
+├── db/
+│   └── seeds.rb           # Database seeding script
 ├── Gemfile                # Ruby dependencies
 └── README.md              # This file
 ```

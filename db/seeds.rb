@@ -1,17 +1,5 @@
-require "mongoid"
-require_relative "models/post"
-
-# Load Mongoid configuration
-Mongoid.load!("config/mongoid.yml", :development)
-
-puts "Seeding database..."
-
-# Clear existing data
-Post.delete_all
-puts "Cleared existing posts"
-
 # Sample posts data
-posts_data = [
+SAMPLE_POSTS = [
   {
     title: "Getting Started with Ruby and MongoDB",
     author: "Jane Developer",
@@ -37,14 +25,26 @@ posts_data = [
     author: "Emily Rodriguez",
     content: "Mongoid is an Object-Document-Mapper (ODM) for MongoDB written in Ruby. Here are some tips for working with it effectively:\n\n1. Always define validations on your models\n2. Use embedded documents for one-to-many relationships when appropriate\n3. Take advantage of Mongoid's query methods\n4. Remember to index your frequently queried fields\n5. Use the Rails console to test your queries"
   }
-]
+].freeze
 
-# Create posts
-posts_data.each do |post_data|
-  post = Post.create!(post_data)
-  puts "Created: #{post.title} by #{post.author}"
+# Method to create sample posts
+def seed_posts
+  SAMPLE_POSTS.each do |post_data|
+    Post.create!(post_data)
+  end
 end
 
-puts "\nSeeding complete! Created #{Post.count} posts."
-puts "Start the app with: ruby app.rb"
-puts "Then visit: http://localhost:4567"
+# If running this file directly (ruby db/seed.rb)
+if __FILE__ == $PROGRAM_NAME
+  require "mongoid"
+  require_relative "../models/post"
+
+  Mongoid.load!("config/mongoid.yml", :development)
+
+  puts "Seeding database..."
+  Post.delete_all
+  puts "Cleared existing posts"
+
+  seed_posts
+  puts "Created #{Post.count} posts."
+end

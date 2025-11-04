@@ -5,6 +5,14 @@ require_relative "models/post"
 # Load Mongoid configuration
 Mongoid.load!("config/mongoid.yml", :development)
 
+# Seed database with sample data if empty
+if Post.count.zero?
+  puts "Database is empty. Seeding with sample data..."
+  load "db/seeds.rb"
+  seed_posts
+  puts "Seeding complete! Created #{Post.count} posts."
+end
+
 # Configure Sinatra
 set :port, 4567
 set :bind, "0.0.0.0"
