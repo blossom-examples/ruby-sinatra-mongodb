@@ -1,12 +1,13 @@
 development:
   clients:
     default:
-      database: demo_dev
-      username: <%= ENV['MONGODB_USERNAME'] || 'admin' %>
-      password: <%= ENV['MONGODB_PASSWORD'] || 'root_password' %>
+      database: demo
       hosts:
         - localhost:27017
       options:
+        user: <%= ENV['MONGODB_USERNAME'] || 'admin' %>
+        password: <%= ENV['MONGODB_PASSWORD'] || 'root_password' %>
+        auth_source: admin
         server_selection_timeout: 1
 
 production:

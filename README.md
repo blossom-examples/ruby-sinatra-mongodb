@@ -29,6 +29,13 @@ bundle install
 2. Make sure MongoDB is running on your local machine
 
 3. Start the application:
+
+**Option 1: Using Puma (recommended)**
+```bash
+bin/web
+```
+
+**Option 2: Using WEBrick**
 ```bash
 ruby app.rb
 ```
@@ -57,6 +64,7 @@ ruby db/seeds.rb
 ```
 .
 ├── app.rb                  # Main Sinatra application with routes
+├── config.ru               # Rack configuration for Puma/other servers
 ├── models/
 │   └── post.rb            # Post model with Mongoid
 ├── views/
@@ -69,6 +77,8 @@ ruby db/seeds.rb
 │   └── mongoid.yml        # MongoDB configuration
 ├── db/
 │   └── seeds.rb           # Database seeding script
+├── bin/
+│   └── web                # Script to start app with Puma
 ├── Gemfile                # Ruby dependencies
 └── README.md              # This file
 ```
