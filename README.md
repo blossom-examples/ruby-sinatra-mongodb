@@ -87,9 +87,26 @@ ruby db/seeds.rb
 
 The app uses Mongoid to connect to MongoDB. Configuration is in [config/mongoid.yml](config/mongoid.yml):
 
-- **Development**: Connects to `sinatra_books_dev` database on localhost:27017
-- **Production**: Uses `MONGODB_URI` environment variable
-- **Test**: Connects to `sinatra_books_test` database
+### Development
+Connects to `demo` database on localhost:27017 with authentication:
+- Username: `admin` (or set `MONGODB_USERNAME` env var)
+- Password: `root_password` (or set `MONGODB_PASSWORD` env var)
+- Auth source: `admin`
+
+### Production
+Uses a MongoDB connection URI from environment variables:
+- `MONGODB_URI` (preferred) or `DATABASE_URL`
+- Format: `mongodb://username:password@host:port/database?authSource=admin`
+
+Common platforms that provide `MONGODB_URI`:
+- **Heroku**: MongoDB Atlas add-on
+- **Railway**: MongoDB service
+- **Render**: MongoDB service
+- **Fly.io**: Set manually
+- **MongoDB Atlas**: Available in connection settings
+
+### Test
+Connects to `demo_test` database on localhost:27017
 
 ## Post Model
 

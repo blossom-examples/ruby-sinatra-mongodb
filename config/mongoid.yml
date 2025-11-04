@@ -13,7 +13,9 @@ development:
 production:
   clients:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      # Use MONGODB_URI for Heroku, Railway, Render, etc.
+      # Format: mongodb://username:password@host:port/database?authSource=admin
+      uri: <%= ENV['MONGODB_URI'] || ENV['DATABASE_URL'] %>
       options:
         server_selection_timeout: 5
 
