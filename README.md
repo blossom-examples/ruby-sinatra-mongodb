@@ -16,7 +16,7 @@ A simple blog application demonstrating how to use MongoDB with Sinatra using Mo
 
 ## Prerequisites
 
-- Ruby (2.7 or higher recommended)
+- Ruby
 - MongoDB (running on localhost:27017)
 
 ## Installation
