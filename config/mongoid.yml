@@ -1,0 +1,24 @@
+development:
+  clients:
+    default:
+      database: sinatra_books_dev
+      hosts:
+        - localhost:27017
+      options:
+        server_selection_timeout: 1
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
+      options:
+        server_selection_timeout: 5
+
+test:
+  clients:
+    default:
+      database: sinatra_books_test
+      hosts:
+        - localhost:27017
+      options:
+        server_selection_timeout: 1
