@@ -1,13 +1,9 @@
 development:
   clients:
     default:
-      database: demo
-      hosts:
-        - localhost:27017
+      # Use URI for connection (either hardcoded or from env var)
+      uri: <%= ENV['MONGODB_URI'] || ENV['DATABASE_URL'] || 'mongodb://admin:root_password@localhost:27017/demo?authSource=admin' %>
       options:
-        user: <%= ENV['MONGODB_USERNAME'] || 'admin' %>
-        password: <%= ENV['MONGODB_PASSWORD'] || 'root_password' %>
-        auth_source: admin
         server_selection_timeout: 1
 
 production:
