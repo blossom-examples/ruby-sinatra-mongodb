@@ -2,17 +2,19 @@ development:
   clients:
     default:
       # Use URI for connection (either hardcoded or from env var)
-      uri: <%= ENV['MONGODB_URI'] || ENV['DATABASE_URL'] || 'mongodb://admin:root_password@localhost:27017/demo?authSource=admin' %>
+      uri: <%= ENV['MONGODB_URI'] || ENV['DATABASE_URL'] || 'mongodb://admin:root_password@localhost:27017/demo' %>
       options:
+        auth_source: admin
         server_selection_timeout: 1
 
 production:
   clients:
     default:
       # Use MONGODB_URI for Heroku, Railway, Render, etc.
-      # Format: mongodb://username:password@host:port/database?authSource=admin
+      # Format: mongodb://username:password@host:port/database
       uri: <%= ENV['MONGODB_URI'] || ENV['DATABASE_URL'] %>
       options:
+        auth_source: admin
         server_selection_timeout: 5
 
 test:

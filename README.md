@@ -88,10 +88,14 @@ ruby db/seeds.rb
 The app uses Mongoid to connect to MongoDB. Configuration is in [config/mongoid.yml](config/mongoid.yml):
 
 ### Development
-Connects to `demo` database on localhost:27017 with authentication:
-- Username: `admin` (or set `MONGODB_USERNAME` env var)
-- Password: `root_password` (or set `MONGODB_PASSWORD` env var)
-- Auth source: `admin`
+Uses MongoDB connection URI with fallback to localhost.
+
+Set `MONGODB_URI` or `DATABASE_URL` to override the default:
+```bash
+MONGODB_URI=mongodb://username:password@host:port/database?authSource=admin bin/web
+```
+
+**Important**: If using root credentials (created via `MONGO_INITDB_ROOT_USERNAME`), you **must** include `?authSource=admin` in the URI, even if connecting to a different database.
 
 ### Production
 To use production configuration, set `RACK_ENV=production`.
